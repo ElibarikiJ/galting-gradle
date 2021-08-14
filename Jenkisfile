@@ -1,8 +1,20 @@
-pipeline{
+pipeline {
     agent any
-        stages {
-            stage('Hello') {
-                echo 'Hello demo'
+    stages {
+        stage("Build Maven") {
+            steps {
+                echo 'Hello'
             }
         }
+        stage("Run Gatling") {
+            steps {
+                sh './gradlew gatlingRun'
+            }
+            post {
+                always {
+                    gatlingArchive()
+                }
+            }
+        }
+    }
 }
