@@ -1,0 +1,11 @@
+pipeline{
+    agent any
+    stages {
+        stage('Hello') {
+            echo 'Hello demo'
+        }
+        stage('Build') {
+            sh './gradlew gatlingRun'
+        }
+    }
+}
